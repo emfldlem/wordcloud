@@ -118,22 +118,23 @@ jQuery(function($) {
   $mask.on('change', function() {
     maskCanvas = null;
 
-    var file = $mask[0].files[0];
+    /*var file = system.file("image(back).png");
 
     if (!file) {
       return;
     }
 
-    var url = window.URL.createObjectURL(file);
+    var url = window.URL.createObjectURL(file);*/
     var img = new Image();
-    img.src = url;
+    img.src = 'image.png';
 
     img.onload = function readPixels() {
-      window.URL.revokeObjectURL(url);
+     // window.URL.revokeObjectURL(url);
 
       maskCanvas = document.createElement('canvas');
       maskCanvas.width = img.width;
       maskCanvas.height = img.height;
+      console.log(maskCanvas.width);
 
       var ctx = maskCanvas.getContext('2d');
       ctx.drawImage(img, 0, 0, img.width, img.height);
@@ -162,8 +163,10 @@ jQuery(function($) {
           newImageData.data[i + 3] = 255;
         }
       }
+      
 
       ctx.putImageData(newImageData, 0, 0);
+      console.log(ctx);
     };
   });
 
@@ -210,6 +213,7 @@ jQuery(function($) {
   });
 
   var run = function run() {
+    $mask.trigger('change');
     $loading.prop('hidden', false);
 
     // Load web font
@@ -310,6 +314,75 @@ jQuery(function($) {
     $width.val(initdata.width || '');
     $height.val(initdata.height || '');
   };
+  if (maskCanvas) {
+      options.clearCanvas = false;
+
+      /* Determine bgPixel by creating
+         another canvas and fill the specified background color. */
+      var bctx = document.createElement('canvas').getContext('2d');
+
+      bctx.fillStyle = options.backgroundColor || '#fff';
+      bctx.fillRect(0, 0, 1, 1);
+      var bgPixel = bctx.getImageData(0, 0, 1, 1).data;
+
+      var maskCanvasScaled =
+        document.createElement('canvas');
+      maskCanvasScaled.width = $canvas[0].width;
+      maskCanvasScaled.height = $canvas[0].height;
+      var ctx = maskCanvasScaled.getContext('2d');
+
+      ctx.drawImage(maskCanvas,
+        0, 0, maskCanvas.width, maskCanvas.height,
+        0, 0, maskCanvasScaled.width, maskCanvasScaled.height);
+
+var img = new Image();
+    img.src = 'image.png';
+
+    img.onload = function readPixels() {
+     // window.URL.revokeObjectURL(url);
+
+      maskCanvas = document.createElement('canvas');
+      maskCanvas.width = img.width;
+      maskCanvas.height = img.height;
+      console.log(maskCanvas.width);
+
+      var ctx = maskCanvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+
+      var imageData = ctx.getImageData(
+        0, 0, maskCanvas.width, maskCanvas.height);
+      var newImageData = ctx.createImageData(imageData);
+
+      for (var i = 0; i < imageData.data.length; i += 4) {
+        var tone = imageData.data[i] +
+          imageData.data[i + 1] +
+          imageData.data[i + 2];
+        var alpha = imageData.data[i + 3];
+
+        if (alpha < 128 || tone > 128 * 3) {
+          // Area not to draw
+          newImageData.data[i] =
+            newImageData.data[i + 1] =
+            newImageData.data[i + 2] = 255;
+          newImageData.data[i + 3] = 0;
+        } else {
+          // Area to draw
+          newImageData.data[i] =
+            newImageData.data[i + 1] =
+            newImageData.data[i + 2] = 0;
+          newImageData.data[i + 3] = 255;
+        }
+      }
+    }
+
+
+      ctx.putImageData(newImageData, 0, 0);
+
+      ctx = $canvas[0].getContext('2d');
+      ctx.drawImage(maskCanvasScaled, 0, 0);
+
+      maskCanvasScaled = ctx = imageData = newImageData = bctx = bgPixel = undefined;
+    }
 
   var changeHash = function changeHash(name) {
     if (window.location.hash === '#' + name ||

@@ -203,7 +203,7 @@ if (!window.clearImmediate) {
       shuffle: true,
       rotateRatio: 0.5,
 
-      shape: 'square',
+      shape: 'circle',
       ellipticity: 0.65,
 
       classes: null,
