@@ -1,0 +1,54 @@
+<html>
+ <head>
+  <meta charset="UTF-8"/>
+  <title>JSON 파싱</title>
+ 
+  <style> </style>
+  
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  
+  <script>
+  var list = [];
+  //$(function(){})의 기능은 body의 구조를 파악하자 마자
+    $(function(){
+    $.ajax({
+     url: "data.json",
+     dataType: "json",
+     success: function(data){
+      //json의 경우는 data는 파싱된 결과
+      for(var i=0; i<data.length; i++) {
+          list.push(data[i].weight + ' ' + data[i].word);
+          alert(data[i].weight);
+
+      };
+      console.log(list);
+      /*
+      foreach(function(item, index, data) {
+          list.push(data[index].weight + ' ' + data[index].word);
+      }); */
+
+
+      //alert(data[0].weight);
+       /* $.each(data, function(index, item)
+        {
+            //alert(item.weight + ":" +item.word);
+            list.push(item.weight + ' ' + item.word);
+            // var ar=data["weight"];
+            //var ar1=data["word"];
+            //console.log(ar);
+            console.log(list);
+            //alert(ar[0].id+ar1[0].재산구분);
+        })*/
+      }
+    })
+})
+  </script>
+  
+  
+   </head>
+ <body>
+  
+ </body>
+ 
+</html>
+[출처] <jQuery>Ajax, json(제이손) 파싱해서 가져오기|작성자 programer

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Create Object from JSON String</h2>
+
+<div id="demo"></div>
+
+<script>
+var arr = [];
+/*var text = '[' +
+'{"weight":30,"word":"황금어장라디오스타" },' +
+'{"weight":"20","word":"슈퍼스타k2016" },' +
+'{"weight":"27","word":"수요미식회" }' +
+'{"weight":"25","word":"해피투게더3" }' +
+'{"weight":"20","word":"k팝스타시즌6더라스트찬스" }' +
+'{"weight":"18","word":"무한도전" }' +
+'{"weight":"19","word":"아는형님" }' +
+'{"weight":"10","word":"주간아이돌" }' +
+'{"weight":"5","word":"한끼줍쇼" }' +
+'{"weight":"4","word":"영화라라랜드" }' +
+'{"weight":"8","word":"미씽:사라진여자" }' +
+'{"weight":"17","word":"영화형" }' +
+'{"weight":"13","word":"원피스필름골드" }' +
+'{"weight":"5","word":"영화신비한동물사전" }' +
+'{"weight":"2","word":"영화스플릿" }' +
+'{"weight":"1","word":"잭리처:네버고백" }' +
+'{"weight":"28","word":"당신,거기있어줄래요" }' +
+'{"weight":"22","word":"너의이름은" }' +
+'{"weight":"Peter","word":"Jones" }]';
+*/
+var text = '[' +
+'{"weight":43,"word":"황금어장라디오스타" },' +
+'{"weight":44,"word":"슈퍼스타k2016" },' +
+'{"weight":41,"word":"수요미식회" },' +
+'{"weight":33,"word":"해피투게더3" },' +
+'{"weight":42,"word":"k팝스타시즌6더라스트찬스" },' +
+'{"weight":13,"word":"무한도전" },' +
+'{"weight":23,"word":"아는형님" },' +
+'{"weight":34,"word":"주간아이돌" },' +
+'{"weight":12,"word":"한끼줍쇼" },' +
+'{"weight":23,"word":"영화라라랜드" },' +
+'{"weight":33,"word":"미씽:사라진여자" },' +
+'{"weight":35,"word":"영화형" },' +
+'{"weight":7,"word":"원피스필름골드" },' +
+'{"weight":6,"word":"영화신비한동물사전" },' +
+'{"weight":8,"word":"영화스플릿" },' +
+'{"weight":2,"word":"잭리처:네버고백" },' +
+'{"weight":6,"word":"당신,거기있어줄래요" },' +
+'{"weight":8,"word":"너의이름은" },' +
+'{"weight":50,"word":"썰전" }]';
+
+
+obj = JSON.parse(text);
+console.log(obj);
+
+for(var i=0; i<obj.length; i++) {
+  arr.push(obj[i].weight + ' ' + obj[i].word);
+  arr.join('\n');
+  document.getElementById("demo").innerHTML =
+obj[i].weight + " " + obj[i].word;
+}
+
+
+
+console.log(arr);
+
+
+
+</script>
+
+</body>
+</html>

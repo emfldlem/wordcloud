@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="id01"></div>
+<script>
+var arr1 = [
+{
+"display": "JavaScript Tutorial",
+"url": "http://www.w3schools.com/js/default.asp"
+},
+{
+"display": "HTML Tutorial",
+"url": "http://www.w3schools.com/html/default.asp"
+},
+{
+"display": "CSS Tutorial",
+"url": "http://www.w3schools.com/css/default.asp"
+}
+];
+myFunction(arr1);
+
+function myFunction(arr) {
+    var out;
+    var i;
+    for(i = 0; i<arr.length; i++) {
+        out.push()
+        out += '<a href="' + arr[i].url + '">' + 
+        arr[i].display + '</a><br>';
+    }
+    console.log(out);
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+
+</body>
+</html>
