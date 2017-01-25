@@ -1,3 +1,6 @@
+해당 프로젝트는 아래의 출처임을 밝힙니다. 
+
+
 # wordcloud2.js [![Build Status](https://travis-ci.org/timdream/wordcloud2.js.svg?branch=gh-pages)](https://travis-ci.org/timdream/wordcloud2.js) [![npm version](https://badge.fury.io/js/wordcloud.svg)](http://badge.fury.io/js/wordcloud)
 
 Create a tag cloud/[Wordle](http://www.wordle.net/) presentation on 2D canvas or HTML.
